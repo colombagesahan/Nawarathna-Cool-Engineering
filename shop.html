@@ -1,0 +1,1318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nawarathna Cool — Shop</title>
+  <meta name="description" content="Nawarathna Cool — Shop your AC parts & accessories. Add to cart and order via WhatsApp." />
+  <style>
+    :root{
+      --bg:#f7fbff;
+      --card:#ffffff;
+      --accent:#0b69ff;
+      --muted:#6b7280;
+      --glass: rgba(255,255,255,0.7);
+      --shadow: 0 6px 18px rgba(12, 24, 55, 0.08);
+
+      /* New style variables from user */
+      --accent-1:#0b69ff;
+      --accent-2:#1c9cff;
+      --accent-3:#ff7a59;
+      --bg:#f0f7ff; /* Lighter, more vibrant background */
+      --wa:#25D366;
+      --text-dark:#071433;
+      --shadow-light: rgba(12,24,55,0.08);
+      --shadow-medium: rgba(11,26,70,0.15);
+      --gradient-main: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%); /* More vibrant gradient */
+      --gradient-hero: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4)); /* Darker overlay for hero text */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Poppins', sans-serif; /* Changed font to Poppins for a modern look */
+      background:var(--bg);
+      color:var(--text-dark);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none !important;} /* Globally remove underline */
+    .container{max-width:1200px;margin:0 auto;padding:18px} /* Slightly wider container */
+
+    /* Header */
+    header{
+      position:sticky;
+      top:0;
+      z-index:120;
+      background:var(--gradient-main); /* Using new vibrant gradient */
+      color:white;
+      box-shadow:0 10px 30px var(--shadow-medium); /* Stronger shadow */
+      padding: 10px 0; /* Added padding */
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:56px;width:56px;border-radius:10px;background:white;padding:8px;box-shadow:0 4px 15px rgba(0,0,0,0.2);} /* Larger logo, more rounded, shadow */
+    .brand > div > div:first-child { font-weight: 700; font-size: 1.2em; } /* Brand name bolder, slightly larger */
+    nav .nav-links{display:flex;gap:20px;align-items:center} /* Increased gap */
+    nav .nav-links a{
+      padding:10px 16px;
+      border-radius:25px; /* More rounded links */
+      color:white;
+      font-weight:600;
+      transition:background 0.3s ease, transform 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    nav .nav-links a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.2);
+      transition: left 0.3s ease;
+      z-index: -1;
+    }
+    nav .nav-links a:hover::before {
+      left: 0;
+    }
+    nav .nav-links a:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.1); /* Subtle background on hover */
+    }
+    .nav-toggle{display:none;background:transparent;border:0;color:white;font-size:26px;cursor:pointer;} /* Larger toggle icon */
+
+    /* Preloader */
+    .preloader{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:var(--gradient-main); /* Matches header gradient */
+      z-index:9999;
+      color:white;
+      flex-direction:column;
+      font-family: 'Poppins', sans-serif;
+    }
+    .typing{font-weight:700;font-size:24px;margin-top:10px;} /* Larger typing text */
+    .cursor{display:inline-block;width:12px;height:26px;background:rgba(255,255,255,0.9);margin-left:8px;animation:blink 1s steps(2) infinite}
+    @keyframes blink{50%{opacity:0}}
+
+    /* Hero */
+    .hero{
+      display:flex;
+      gap:30px; /* Increased gap */
+      align-items:center;
+      padding:80px 18px; /* More vertical padding */
+      background-image:url('background.png');
+      background-size:cover;
+      background-position:center;
+      color:white;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5); /* Darker overlay for better text readability */
+      z-index: 0;
+    }
+    .hero > * { z-index: 1; } /* Ensure content is above overlay */
+    .hero .hero-wrap{
+      flex:1;
+      background:var(--gradient-hero); /* Darker gradient for text container */
+      padding:30px; /* More padding */
+      border-radius:18px; /* More rounded */
+      box-shadow:0 15px 40px rgba(0,0,0,0.3); /* Stronger shadow */
+      backdrop-filter: blur(5px); /* Added blur effect */
+    }
+    .hero h1{margin:0 0 12px;font-size:42px;line-height:1.2;font-weight:800;} /* Larger, bolder heading */
+    .hero p{margin:0 0 16px;color:rgba(255,255,255,0.95);font-size:1.1em;} /* Slightly larger, clearer paragraph */
+    .badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px} /* Increased gap and margin */
+    .badge{
+      background:rgba(255,255,255,0.2);
+      padding:10px 18px; /* More padding */
+      border-radius:999px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,0.3); /* Subtle border */
+      backdrop-filter: blur(3px);
+    }
+    .quote-form{display:flex;gap:15px;flex-wrap:wrap;margin-top:15px} /* Increased gap and margin */
+    .quote-form input, .quote-form select{
+      padding:12px 18px; /* More padding */
+      border-radius:10px;
+      border:1px solid #ddd; /* Subtle border */
+      min-width:180px; /* Wider inputs */
+      flex:1 1 180px;
+      font-family:'Poppins', sans-serif;
+      box-shadow:0 4px 10px rgba(0,0,0,0.05);
+      transition:all 0.3s ease;
+    }
+    .quote-form input:focus, .quote-form select:focus {
+      outline: none;
+      border-color: var(--accent-1);
+      box-shadow: 0 0 0 3px rgba(11,105,255,0.2);
+    }
+
+    /* Buttons */
+    .btn{
+      background:var(--accent-3); /* Changed to accent-3 for contrast */
+      color:white; /* Text color for new button color */
+      padding:12px 24px; /* More padding */
+      border-radius:10px;
+      border:0;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow:0 10px 25px rgba(255,122,89,0.3); /* Shadow matching button color */
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      font-family:'Poppins', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn:hover{
+      transform:translateY(-5px); /* More pronounced lift */
+      box-shadow:0 15px 35px rgba(255,122,89,0.4); /* Stronger shadow on hover */
+      background: #ff5e38; /* Slightly darker on hover */
+    }
+
+    /* Sections */
+    section{padding:60px 18px;position: relative;} /* More vertical padding */
+    h2{margin:0 0 25px;font-size:36px;font-weight:800;text-align:center;color:var(--accent-1);position: relative;} /* Larger, bolder, centered, accent color */
+    h2::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: var(--accent-3);
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px} /* Increased gap */
+    .card{
+      background:var(--card);
+      padding:25px; /* More padding */
+      border-radius:16px; /* More rounded */
+      box-shadow:0 15px 40px var(--shadow-light); /* Stronger shadow */
+      transition:transform .22s ease,box-shadow .22s ease;
+      border-left: 5px solid transparent; /* Added left border for accent */
+      border-image: linear-gradient(180deg, var(--accent-1), var(--accent-2)) 1;
+    }
+    .card:hover{
+      transform:translateY(-8px); /* More pronounced lift */
+      box-shadow:0 25px 50px var(--shadow-medium); /* Stronger shadow on hover */
+    }
+
+    /* icon inside card heading */
+    .card h3{display:flex;align-items:center;gap:12px;margin-top:0;font-size:1.4em;color:var(--text-dark);} /* Larger heading, spacing */
+    .card svg{width:28px;height:28px;flex-shrink:0;} /* Larger icons */
+    .card p { font-size: 0.95em; color: var(--muted); } /* Muted paragraph text */
+
+    /* Products */
+    .products{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;} /* Increased gap, center alignment */
+    .product-card{ /* Renamed from .product to avoid conflict */
+      background:var(--card);
+      border-radius:14px; /* More rounded */
+      padding:15px; /* More padding */
+      flex:1 1 250px; /* Wider products */
+      max-width:280px; /* Wider max */
+      box-shadow:0 10px 25px var(--shadow-light);
+      text-align: center;
+      transition:transform .22s ease,box-shadow .22s ease;
+      display:flex;
+      flex-direction:column;
+    }
+    .product-card:hover{
+      transform: translateY(-5px);
+      box-shadow:0 15px 35px var(--shadow-medium);
+    }
+    .product-card img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:10px;background:#eef;} /* Taller images, more rounded */
+    .product-card h3{font-size:1.2em;margin:10px 0 5px;color:var(--text-dark);}
+    .product-card .small{font-weight:700;color:var(--accent-3);font-size:1.1em;} /* Price in accent color, bolder */
+    .product-card .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+    .product-card .add {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+    }
+    .product-card .qty {
+      width: 64px;
+      padding: 6px;
+      border-radius: 8px;
+      border: 1px solid #e6e9ef;
+    }
+
+
+    /* Process */
+    .process{
+      display:grid;
+      grid-template-columns:repeat(3,1fr); /* 3 cards per line */
+      gap:25px; /* Increased gap */
+      justify-items: center; /* Center items within grid columns */
+      max-width: 1000px; /* Max width to keep cards from getting too wide */
+      margin: 0 auto; /* Center the grid itself */
+    }
+    .step{
+      background:linear-gradient(180deg,#ffffff,#f9fcff);
+      padding:25px; /* Increased padding */
+      border-radius:18px; /* More rounded */
+      text-align:center;
+      box-shadow:0 10px 25px rgba(12,24,55,0.08); /* Stronger shadow */
+      border:1px solid #eee;
+      transition:all 0.3s ease;
+      width: 100%; /* Ensure cards take full width of their grid column */
+      max-width: 320px; /* Set a max-width for individual steps */
+    }
+    .step:hover {
+      transform: translateY(-8px); /* More pronounced lift */
+      box-shadow:0 15px 35px rgba(12,24,55,0.12); /* Stronger shadow on hover */
+    }
+    .step strong{
+      display:block;
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-3)); /* Gradient for number */
+      color:white;
+      width:56px;height:56px; /* Larger number bubble */
+      margin:0 auto 18px; /* More margin */
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px; /* Larger font size */
+      font-weight:800;
+      box-shadow:0 6px 18px rgba(0,0,0,0.2);
+    }
+    .step h4{font-size:1.5em;margin-top:0;margin-bottom:10px;color:var(--text-dark);} /* Larger heading */
+    .step p{font-size:1em;color:var(--muted);} /* Slightly larger paragraph */
+
+    /* Gallery */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;} /* Responsive grid, increased gap */
+    .gallery-grid img, .gallery-grid video{
+      width:100%;
+      height:160px; /* Taller items */
+      object-fit:cover;
+      border-radius:10px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .gallery-grid img:hover, .gallery-grid video:hover {
+      transform: scale(1.03);
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:30px} /* Adjusted column ratio, increased gap */
+    .contact-grid .card {
+      border-left: none;
+      border-bottom: 5px solid transparent;
+      border-image: linear-gradient(90deg, var(--accent-1), var(--accent-3)) 1;
+    }
+    .contact-grid .card:hover {
+      transform: translateY(-5px);
+    }
+    iframe{width:100%;height:280px;border:0;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.1);} /* Taller maps, more rounded, shadow */
+    .contact-grid h4 { font-size: 1.3em; margin-bottom: 8px; color: var(--accent-1); }
+    .contact-grid p { margin-bottom: 15px; color: var(--text-dark); }
+    #waSuggest input, #waSuggest textarea {
+      background: #f8f8f8;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    }
+    #waSuggest button {
+      background: var(--wa);
+      box-shadow:0 10px 25px rgba(37,211,102,0.3);
+    }
+    #waSuggest button:hover {
+      background: #1dae51;
+      box-shadow:0 15px 35px rgba(37,211,102,0.4);
+    }
+
+    footer{
+      background:#071433;
+      color:white;
+      padding:40px 18px; /* More padding */
+      margin-top: 40px;
+    }
+    footer .container{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:25px; /* Increased gap */
+      flex-wrap:wrap;
+    }
+    footer a{
+      color:rgba(255,255,255,0.8);
+      display:block;
+      padding:8px 0; /* More padding */
+      transition:color 0.2s ease;
+    }
+    footer a:hover{color:var(--accent-3);} /* Accent color on hover */
+    footer div div:first-child{font-weight:800;font-size:1.1em;margin-bottom:10px;}
+    footer div:nth-child(2) div:first-child,
+    footer div:nth-child(3) div:first-child {
+      font-weight:700;
+      margin-bottom:12px;
+      color:var(--accent-2); /* Accent color for headings */
+    }
+    footer .copyright, footer .developer-info {
+      font-size: 0.9em;
+      color: rgba(255,255,255,0.7);
+      margin-top: 15px;
+    }
+
+
+    /* WhatsApp floating */
+    .wa-float{
+      position:fixed;
+      right:25px;bottom:25px; /* More offset */
+      width:70px;height:70px; /* Larger button */
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 30px rgba(12,24,55,0.2); /* Stronger shadow */
+      z-index:200;
+      background:var(--wa); /* Solid WhatsApp color for container */
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .wa-float:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow:0 15px 40px rgba(12,24,55,0.3);
+    }
+    .bubble{
+      width:60px;height:60px; /* Bubble size adjusted */
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      color:white;
+      background:linear-gradient(180deg,var(--wa),#1aa64f); /* Gradient inside bubble */
+    }
+    .wa-float svg { width: 30px; height: 30px; } /* Larger icon */
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(3,6,23,0.7);display:flex;align-items:center;justify-content:center;z-index:9998;opacity:0;pointer-events:none;transition:opacity .3s ease}
+    .modal-backdrop.show{opacity:1;pointer-events:auto}
+    .modal{
+      background:white;
+      border-radius:18px; /* More rounded */
+      max-width:900px; /* Wider modal */
+      width:94%;
+      padding:30px; /* More padding */
+      box-shadow:0 25px 70px rgba(3,6,23,0.4); /* Stronger shadow */
+      transform: translateY(-20px);
+      transition:transform 0.3s ease;
+      /* Ensure modal content is scrollable if it overflows */
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-backdrop.show .modal {
+      transform: translateY(0);
+    }
+    .modal .modal-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px;flex-wrap: wrap;} /* Increased gap, allow wrap */
+    .modal .modal-head h3{font-size:1.8em;margin:0;color:var(--accent-1);}
+    .modal .modal-head .small{font-size:0.9em;color:var(--muted);}
+    .modal .close{
+      background:#f0f0f0;
+      border:0;
+      padding:10px 14px; /* More padding */
+      border-radius:10px;
+      cursor:pointer;
+      font-weight: 600;
+      transition:background 0.2s ease;
+    }
+    .modal .close:hover { background: #e0e0e0; }
+    .modal .promo-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid for promo items */
+      gap: 20px;
+      justify-content: center;
+    }
+    .modal .promo-item{
+      /* flex:1 1 200px; /* Wider promo items */
+      /* max-width:220px; /* Wider max */
+      background:#fcfdff;
+      padding:15px; /* More padding */
+      border-radius:12px;
+      text-align:center;
+      border:1px solid #eee;
+      box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    }
+    .modal .promo-item img{width:100%;height:130px;object-fit:cover;border-radius:8px;margin-bottom:8px;} /* Taller images */
+    .modal .promo-item div:first-of-type{font-weight:700;margin-top:10px;font-size:1.1em;color:var(--text-dark);}
+    .modal .promo-item .small{font-weight:700;color:var(--accent-3);font-size:1em;} /* Price in accent color, bolder */
+    .modal .btn {
+      background: var(--accent-1);
+      box-shadow:0 10px 25px rgba(11,105,255,0.3);
+    }
+    .modal .btn:hover {
+      background: #0959e0;
+      box-shadow:0 15px 35px rgba(11,105,255,0.4);
+    }
+
+    /* coupon section */
+    .modal .coupon-section {
+      background: #f0f7ff;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 25px;
+      text-align: center;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+      border: 1px dashed var(--accent-2);
+    }
+    .modal .coupon-section h4 {
+      color: var(--accent-1);
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.4em;
+    }
+    .modal .coupon-section p {
+      color: var(--text-dark);
+      margin-bottom: 15px;
+    }
+    .modal .coupon-section input {
+      width: 100%;
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: 'Poppins', sans-serif;
+    }
+    .modal .coupon-section button {
+      width: auto;
+      margin: 0 auto;
+      padding: 10px 20px;
+    }
+
+
+    /* Animations */
+    .fade-up{opacity:0;transform:translateY(20px);transition:all .8s cubic-bezier(.2,.9,.2,1)} /* Slower, more pronounced fade-up */
+    .fade-up.show{opacity:1;transform:none}
+
+    /* Responsive */
+    @media(max-width:1200px){
+      .container { max-width: 96%; }
+    }
+    @media(max-width:1100px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .gallery-grid{grid-template-columns:repeat(3,1fr)}
+      .process{
+        grid-template-columns:repeat(2,1fr); /* 2 cards per line on medium screens */
+        max-width: 700px; /* Adjust max-width for 2 columns */
+      }
+      .modal{max-width:760px}
+      .contact-grid{grid-template-columns:1fr} /* Stack contact grid */
+    }
+    @media(max-width:720px){
+      h2{font-size:30px;}
+      .nav .nav-links{
+        display:none;
+        position:fixed;
+        left:0;right:0;
+        top:76px; /* Adjust top based on header height */
+        background:var(--gradient-main);
+        flex-direction:column;
+        padding:20px 12px;
+        box-shadow:0 8px 20px rgba(0,0,0,0.2);
+      }
+      .nav .nav-links a { width: 100%; text-align: center; }
+      .nav-toggle{display:block}
+      .hero{padding:50px 14px;flex-direction:column;text-align:center;}
+      .hero h1{font-size:36px;}
+      .hero p{font-size:1em;}
+      .badges{justify-content:center;}
+      .process{
+        grid-template-columns:1fr; /* 1 card per line on small screens */
+        max-width: 400px; /* Adjust max-width for 1 column */
+      }
+      .grid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:repeat(2,1fr)}
+      .modal{width:96%;padding:20px}
+      .modal .modal-head { flex-direction: column; text-align: center; align-items: center; }
+      .modal .modal-head div:last-child { margin-top: 15px; }
+      .modal .promo-grid{justify-content:center}
+      .products {flex-direction: column; align-items: center;}
+      .product-card { max-width: 90%; }
+      .cart-panel {
+        top: 0; /* Ensure cart panel starts from the very top */
+        height: 100vh; /* Make it full viewport height */
+        width: 100%;
+        max-width: 100%;
+        z-index: 150; /* Higher z-index to cover header */
+      }
+    }
+    @media(max-width:480px){
+      h2{font-size:26px;}
+      .hero h1{font-size:30px;}
+      .gallery-grid{grid-template-columns:1fr}
+      footer .container { flex-direction: column; text-align: center; }
+      footer .container > div { width: 100%; margin-bottom: 20px; }
+      footer .container > div:last-child { margin-bottom: 0; }
+      .modal .promo-grid { grid-template-columns: 1fr; } /* Stack promo items on smallest screens */
+    }
+
+    /* Additional styles for shop page to match the new design */
+    .header .top-row {
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center content horizontally */
+      gap: 16px;
+      position: relative; /* For absolute positioning of buttons */
+    }
+    .header .search {
+      flex: 1;
+      max-width: 420px; /* Constrain search input width */
+    }
+    .header .search input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 0;
+      outline: none;
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+    .header .search input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+    .header .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      position: absolute; /* Position buttons absolutely */
+      right: 18px; /* Align to the right */
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .header .btn {
+      background: white;
+      color: var(--accent);
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 0;
+      cursor: pointer;
+      box-shadow: var(--shadow-light);
+      font-weight: 600;
+      text-transform: none; /* Override uppercase for shop buttons */
+      letter-spacing: normal;
+    }
+    .header .btn-primary {
+      background: var(--accent-3);
+      color: white;
+      box-shadow:0 10px 25px rgba(255,122,89,0.3);
+    }
+    .header .btn-primary:hover {
+      background: #ff5e38;
+      box-shadow:0 15px 35px rgba(255,122,89,0.4);
+    }
+
+    .hero {
+      background: linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.3));
+      color: var(--text-dark);
+      padding: 36px;
+      border-radius: 14px;
+      margin-top: 18px;
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      position: relative;
+      overflow: visible;
+    }
+    .hero::before {
+      display: none; /* Remove overlay for this hero */
+    }
+    .hero .hero-left {
+      flex: 1;
+    }
+    .hero h2 {
+      margin: 0 0 6px;
+      font-size: 28px;
+      color: var(--text-dark);
+      text-align: left;
+    }
+    .hero h2::after {
+      display: none;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .hero-cta {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+    }
+    .hero img {
+      width: 100%;
+      margin-top: 12px;
+      border-radius: 10px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .cart-panel{
+      position:fixed;
+      right:0;
+      top:0;
+      height:100vh; /* Full viewport height */
+      width:420px;
+      max-width:100%;
+      transform:translateX(110%);
+      transition:transform .28s ease;
+      box-shadow:-8px 0 30px rgba(12,24,55,0.12);
+      z-index:150; /* Higher z-index to ensure it's above other elements */
+      background:linear-gradient(180deg,#fff,#f8fbff);
+      display:flex;
+      flex-direction:column;
+    }
+    .cart-panel.open{transform:translateX(0)}
+    .cart-head{padding:16px;border-bottom:1px solid #eef2ff;display:flex;align-items:center;justify-content:space-between}
+    .cart-items{flex:1;overflow-y:auto;padding:12px;} /* Make cart items scrollable */
+    .cart-item{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(250,250,255,0.6));margin-bottom:10px}
+    .cart-item img{width:64px;height:64px;object-fit:cover;border-radius:8px}
+    .cart-footer{padding:16px;border-top:1px solid #eef2ff}
+    .total-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
+
+    /* toast */
+    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:22px;background:#0b69ff;color:white;padding:10px 16px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .25s;z-index:70}
+    .toast.show{opacity:1;pointer-events:auto}
+
+    /* whatsapp float button */
+    .wa-float{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);z-index:80;text-decoration:none}
+    .wa-float .bubble{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+    .wa-green{background:linear-gradient(180deg,#25D366,#1DAE55)}
+
+    /* back button float icon */
+    .back-float{
+      position:fixed;
+      left:25px; bottom:25px; /* Position bottom-left */
+      width:56px;height:56px; /* Size */
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--accent-1); /* Use primary accent color */
+      color:white;
+      box-shadow:0 10px 30px rgba(12,24,55,0.2);
+      z-index:200;
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .back-float:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow:0 15px 40px rgba(12,24,55,0.3);
+    }
+    .back-float svg { width: 24px; height: 24px; }
+
+
+    /* responsive */
+    @media(max-width:1000px){.products{grid-template-columns:repeat(3,1fr)}.hero h2{font-size:22px}}
+    @media(max-width:720px){
+      header{padding:12px}
+      .top-row{flex-direction:column;align-items:flex-start}
+      .products{grid-template-columns:repeat(2,1fr)}
+      .hero{flex-direction:column}
+      .cart-panel{width:100%;max-width:100%;} /* Ensure cart takes full width on small screens */
+      .header .nav-actions {
+        position: static; /* Reset position for smaller screens */
+        transform: none;
+        width: 100%;
+        justify-content: center; /* Center buttons */
+        margin-top: 10px; /* Add margin */
+      }
+      .header .search {
+        margin-left: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+      .products-header {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    @media(max-width:420px){
+      .products{grid-template-columns:repeat(1,1fr)}
+      .header .nav-actions { flex-direction: column; }
+      .header .nav-actions .btn { width: 100%; }
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(11,105,255,0.1);color:var(--accent);font-weight:600}
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+    /* New styles for the coupon section in the cart */
+    .facebook-promo {
+        background: #e6f7ff; /* Light blue background */
+        border: 1px dashed var(--accent-1);
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 15px;
+        text-align: center;
+    }
+    .facebook-promo h4 {
+        color: var(--accent-1);
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+    .facebook-promo p {
+        color: var(--text-dark);
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+    .facebook-promo input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #cceeff;
+        margin-bottom: 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+    .facebook-promo button {
+        background: #3b5998; /* Facebook blue */
+        color: white;
+        padding: 10px 15px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.2s ease;
+    }
+    .facebook-promo button:hover {
+        background: #2d4373;
+    }
+    .discount-code {
+        margin-top: 10px;
+        font-weight: bold;
+        color: var(--accent-3);
+        font-size: 1.1em;
+    }
+
+    /* Added for the new header structure */
+    .header-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+    .header-nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px; /* Space between "Our Shop" and buttons */
+    }
+    .products-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Cart Specific Styles for layout */
+    .cart-footer-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+    }
+    .cart-footer-buttons button {
+      flex: 1 1 auto; /* Allow buttons to grow/shrink */
+    }
+  </style>
+</head>
+<body>
+  <header id="mainHeader">
+    <div class="container nav top-row">
+      <div class="brand">
+        <img src="logo.png" alt="logo" onerror="this.style.display='none'" />
+        <div>
+          <h1>Our Shop</h1>
+          <div class="small">Nawarathna Cool Engineering</div>
+        </div>
+      </div>
+      <div class="search" style="max-width:420px">
+        <input id="searchInput" placeholder="Search products" />
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h2>Give us your old AC and enjoy a smooth upgrade to a brand-new, high-performance unit.</h2>
+        <p class="muted">“Enjoy a massive 5-year compressor warranty, 1-year parts warranty, and 3 free services—the ultimate worry-free AC experience!</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+          <a class="btn" href="#" onclick="openWhatsAppPromo(event)">WhatsApp</a>
+        </div>
+      </div>
+      <div style="width:280px;text-align:center">
+        <div class="badge">31 products</div>
+        <img src="hero.png" alt="hero" style="width:100%;margin-top:12px;border-radius:10px" onerror="this.style.display='none'" />
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="products-header">
+        <h3 style="margin-top:20px; text-align: center;">Our Shop</h3>
+        <button class="btn" id="openCartBtn" aria-label="Open cart">Cart (<span id="cartCount">0</span>)</button>
+      </div>
+      <div class="products" id="productsGrid">
+        <!-- Products injected by JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- CART MODAL (replaces the previous aside cart-panel) -->
+  <div class="modal-backdrop" id="cartModalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" id="cartModal">
+      <div class="modal-head">
+        <h3>Your Cart</h3>
+        <div class="small muted">(<span id="cartItemsCount">0</span> items)</div>
+        <div style="flex:1"></div>
+        <button class="close" id="closeCartBtn">Close</button>
+      </div>
+
+      <div class="cart-items" id="cartItems"></div>
+
+      <div class="cart-footer">
+        <div class="total-row"><div class="small">Subtotal</div><div id="subtotal">LKR 0</div></div>
+
+        <div class="facebook-promo" id="facebookPromoSection">
+          <h4>Share on Facebook & Get 10% Off!</h4>
+          <p>Share our page on Facebook to receive a 10% coupon code for your next service or purchase. Enter your Facebook share link below.</p>
+          <input type="url" id="facebookShareLink" placeholder="Paste your Facebook share link here" />
+          <button id="applyFacebookPromo">Apply Discount</button>
+          <div class="discount-code" id="generatedDiscountCode" style="display:none;">Your Code: <span id="displayDiscountCode"></span></div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label class="small">Your name</label>
+          <input id="custName" placeholder="John Doe" style="width:100%;padding:8px;border-radius:8px;border:1px solid #eef" />
+        </div>
+        <div style="margin-top:8px">
+          <label class="small">Phone (for WhatsApp)</label>
+          <input id="custPhone" placeholder="94xxxxxxxxx" style="width:100%;padding:8px;border-radius:8px;border:1px solid #eef" />
+        </div>
+        <div class="cart-footer-buttons">
+          <button class="btn btn-primary" id="sendOrderBtn">Send Order via WhatsApp</button>
+          <button class="btn" id="sendOrderWithoutShareBtn">Send Order (No Share)</button>
+        </div>
+        <div style="margin-top:8px" class="small muted">We will receive your order on WhatsApp and confirm prices & delivery. Please review items before sending.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back Floating Button -->
+  <a href="index.html" class="back-float" title="Back to Home">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+    </svg>
+  </a>
+
+  <!-- WhatsApp floating chat button -->
+  <a id="waFloat" class="wa-float" href="#" title="Chat with us on WhatsApp">
+    <div class="bubble wa-green" aria-hidden="true">
+      <!-- WhatsApp SVG -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20.52 3.478A11.955 11.955 0 0012 0C5.373 0 .006 5.373.006 12c0 2.116.554 4.18 1.605 5.995L0 24l6.243-1.63A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12 0-3.205-1.248-6.205-3.48-8.522z" fill="#25D366"/>
+        <path d="M17.472 14.382c-.297-.149-1.758-.868-2.03-.967-.273-.099-.472-.149-.672.149-.198.297-.768.966-.94 1.165-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.058-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.173.198-.297.298-.495.099-.198.05-.372-.025-.52-.075-.149-.672-1.612-.922-2.214-.242-.579-.487-.5-.672-.51l-.572-.01c-.198 0-.52.074-.793.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487 3.977 1.696 3.977 1.132 4.693 1.061.296-.05.96-.389 1.096-.767.134-.372.134-.69.094-.767-.04-.074-.297-.119-.595-.268z" fill="#fff"/>
+      </svg>
+    </div>
+  </a>
+
+  <div class="toast" id="toast">Added to cart</div>
+
+  <script>
+    // --- CONFIG ---
+    const WHATSAPP_NUMBER = '94757077777'; // change to your WhatsApp number in international format without + or dashes. (e.g. 9475...)
+
+    // --- PRODUCTS DATA (31 items) ---
+    const products = [
+      {id:1, title:'Media 7000 BTU Non Inverter', price:125000, image:'1.png', sku:'AC-001'},
+      {id:2, title:'Media 9000 BTU Non Inverter', price:165000, image:'2.png', sku:'AC-002'},
+      {id:3, title:'Media 12000 BTU Non Inverter', price:175000, image:'3.png', sku:'AC-003'},
+      {id:4, title:'Media 18000 BTU Non Inverter', price:225000, image:'4.png', sku:'AC-004'},
+      {id:5, title:'Media 24000 BTU Non Inverter', price:275000, image:'5.png', sku:'AC-005'},
+      {id:6, title:'Media 9000 BTU Inverter', price:195000, image:'6.png', sku:'AC-006'},
+      {id:7, title:'Media 12000 BTU Inverter', price:215000, image:'7.png', sku:'AC-007'},
+      {id:8, title:'Media 18000 BTU Inverter', price:265000, image:'8.png', sku:'AC-008'},
+      {id:9, title:'Media 24000 BTU Inverter', price:325000, image:'9.png', sku:'AC-009'},
+      {id:10, title:'Hisense 9000 BTU Non Inverter', price:130000, image:'10.png', sku:'AC-010'},
+      {id:11, title:'Hisense 12000 BTU Non Inverter', price:145000, image:'11.png', sku:'AC-011'},
+      {id:12, title:'Hisense 9000 BTU Inverter', price:155000, image:'12.png', sku:'AC-012'},
+      {id:13, title:'Comfri 12000 BTU Non Inverter', price:140000, image:'13.png', sku:'AC-013'},
+      {id:14, title:'Comfri 18000 BTU Non Inverter', price:185000, image:'14.png', sku:'AC-014'},
+      {id:15, title:'Comfri 18000 BTU Inverter', price:195000, image:'15.png', sku:'AC-015'},
+      {id:16, title:'Comfri 24000 BTU Inverter', price:235000, image:'16.png', sku:'AC-016'},
+      {id:17, title:'HYUNDAI 9000 BTU Wall Mount Inverter', price:110300, image:'17.png', sku:'AC-017'},
+      {id:18, title:'HYUNDAI 12000 BTU Wall Mount Inverter', price:135000, image:'18.png', sku:'AC-018'},
+      {id:19, title:'HYUNDAI 18000 BTU Wall Mount Inverter', price:168000, image:'19.png', sku:'AC-019'},
+      {id:20, title:'BG Media 12000 BTU Wall Mount Non Inverter', price:156000, image:'20.png', sku:'AC-020'},
+      {id:21, title:'BG Media 18000 BTU Wall Mount Non Inverter', price:195000, image:'21.png', sku:'AC-021'},
+      {id:22, title:'BG Media 24000 BTU Wall Mount Non Inverter', price:246000, image:'22.png', sku:'AC-022'},
+      {id:23, title:'BG Media 12000 BTU Wall Mount Inverter', price:182000, image:'23.png', sku:'AC-023'},
+      {id:24, title:'BG Media 18000 BTU Wall Mount Inverter', price:220000, image:'24.png', sku:'AC-024'},
+      {id:25, title:'BG Media 24000 BTU Wall Mount Inverter', price:279000, image:'25.png', sku:'AC-025'},
+      {id:26, title:'BG Chigo 36000 BTU Floor Ceiling Non Inverter', price:472500, image:'26.png', sku:'AC-026'},
+      {id:27, title:'BG Chigo 48000 BTU Floor Ceiling Non Inverter', price:542500, image:'27.png', sku:'AC-027'},
+      {id:28, title:'BG Chigo 60000 BTU Floor Ceiling Non Inverter', price:567500, image:'28.png', sku:'AC-028'},
+      {id:29, title:'BG Chigo 36000 BTU Ceiling Cassette Non Inverter', price:487500, image:'29.png', sku:'AC-029'},
+      {id:30, title:'BG Chigo 48000 BTU Ceiling Cassette Non Inverter', price:550500, image:'30.png', sku:'AC-030'},
+      {id:31, title:'BG Chigo 60000 BTU Ceiling Cassette Non Inverter', price:595000, image:'31.png', sku:'AC-031'}
+    ];
+
+    // --- STATE ---
+    let cart = {}; // productId -> {product, qty}
+    let discountCode = null;
+
+    // --- DOM refs ---
+    const mainHeader = document.getElementById('mainHeader');
+    const productsGrid = document.getElementById('productsGrid');
+    const cartModalBackdrop = document.getElementById('cartModalBackdrop'); // replaced
+    const cartItemsEl = document.getElementById('cartItems');
+    const subtotalEl = document.getElementById('subtotal');
+    const cartCountEl = document.getElementById('cartCount');
+    const cartItemsCountEl = document.getElementById('cartItemsCount');
+    const toast = document.getElementById('toast');
+    const waFloat = document.getElementById('waFloat');
+    const facebookPromoSection = document.getElementById('facebookPromoSection');
+    const facebookShareLinkInput = document.getElementById('facebookShareLink');
+    const applyFacebookPromoBtn = document.getElementById('applyFacebookPromo');
+    const generatedDiscountCodeDiv = document.getElementById('generatedDiscountCode');
+    const displayDiscountCodeSpan = document.getElementById('displayDiscountCode');
+    const sendOrderBtn = document.getElementById('sendOrderBtn');
+    const sendOrderWithoutShareBtn = document.getElementById('sendOrderWithoutShareBtn');
+
+    // --- render products (fixed event binding) ---
+    function renderProducts(list){
+      productsGrid.innerHTML = '';
+      list.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card'; // Changed class name
+        card.innerHTML = `
+          <img loading="lazy" src="${p.image}" alt="${escapeHtml(p.title)}" onerror="this.style.background='#eef';this.src='placeholder.png'" />
+          <h3>${escapeHtml(p.title)}</h3>
+          <div class="small">SKU: ${p.sku}</div>
+          <div style="margin-top:auto">
+            <div class="price-row">
+              <div class="price">LKR ${formatNumber(p.price)}</div>
+              <div class="small muted">in stock</div>
+            </div>
+            <div class="add">
+              <input class="qty" type="number" min="1" value="1" id="qty_${p.id}" />
+              <button class="btn" data-id="${p.id}">Add</button>
+            </div>
+          </div>
+        `;
+        productsGrid.appendChild(card);
+
+        // Attach event handler directly to this card's button (fixes scoping bug)
+        const btn = card.querySelector('button');
+        const qtyInput = card.querySelector('.qty');
+        btn.addEventListener('click', () => {
+          const qty = Math.max(1, Number(qtyInput.value) || 1);
+          addToCart(p.id, qty);
+        });
+      });
+    }
+
+    // --- simple helpers ---
+    function formatNumber(n){ return n.toLocaleString(); }
+    function escapeHtml(s){ return (s+'').replace(/[&<>"]+/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+    function generateCouponCode() {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let result = '';
+        for (let i = 0; i < 8; i++) {
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return 'FB' + result;
+    }
+
+    // --- cart logic ---
+    function addToCart(id, qty=1){
+      const prod = products.find(p=>p.id===id);
+      if(!prod) return;
+      if(cart[id]) cart[id].qty += qty; else cart[id] = {product:prod, qty};
+      showToast('Added to cart');
+      saveCartToLocal();
+      updateCartUI();
+      openCart(); // ensure cart opens every time
+    }
+
+    function removeFromCart(id){
+      delete cart[id];
+      saveCartToLocal();
+      updateCartUI();
+    }
+
+    function changeQty(id, qty){
+      if(!cart[id]) return;
+      cart[id].qty = Math.max(1, qty);
+      saveCartToLocal();
+      updateCartUI();
+    }
+
+    function clearCart(){ cart = {}; discountCode = null; saveCartToLocal(); updateCartUI(); updateDiscountUI(); }
+
+    function cartSummary(){
+      let items = 0;
+      let total = 0;
+      Object.values(cart).forEach(c=>{ items += c.qty; total += c.qty * c.product.price; });
+
+      let discountedTotal = total;
+      if (discountCode) {
+        discountedTotal = Math.round(total * 0.90); // Apply 10% discount and round
+      }
+
+      return {items, total, discountedTotal};
+    }
+
+    function updateCartUI(){
+      // update small count
+      const s = cartSummary();
+      cartCountEl.textContent = s.items;
+      cartItemsCountEl.textContent = s.items;
+
+      // Display total
+      if (discountCode && s.total !== s.discountedTotal) {
+          subtotalEl.innerHTML = `<span style="text-decoration: line-through; color: var(--muted);">LKR ${formatNumber(s.total)}</span> LKR ${formatNumber(s.discountedTotal)}`;
+      } else {
+          subtotalEl.textContent = 'LKR ' + formatNumber(s.total);
+      }
+
+      // items
+      cartItemsEl.innerHTML = '';
+      if(s.items === 0){ cartItemsEl.innerHTML = '<div class="muted center" style="padding:40px">Your cart is empty</div>'; return; }
+
+      Object.values(cart).forEach(entry => {
+        const item = document.createElement('div');
+        item.className = 'cart-item';
+        item.innerHTML = `
+          <img src="${entry.product.image}" alt="${escapeHtml(entry.product.title)}" onerror="this.src='placeholder.png'" />
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><strong>${escapeHtml(entry.product.title)}</strong><div class="small">${entry.product.sku}</div></div>
+              <div style="text-align:right">LKR ${formatNumber(entry.product.price)}</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;margin-top:8px">
+              <input type="number" min="1" value="${entry.qty}" style="width:68px;padding:6px;border-radius:8px;border:1px solid #eef" data-id="${entry.product.id}" class="cart-qty" />
+              <button class="btn" data-remove="${entry.product.id}">Remove</button>
+            </div>
+          </div>
+        `;
+        cartItemsEl.appendChild(item);
+      });
+
+      // attach handlers
+      document.querySelectorAll('.cart-qty').forEach(el => el.addEventListener('change', (e)=>{ 
+        const id = Number(el.dataset.id); changeQty(id, Number(el.value)||1);
+      }));
+
+      document.querySelectorAll('[data-remove]').forEach(b=>b.addEventListener('click', ()=>{ removeFromCart(Number(b.dataset.remove)); }));
+    }
+
+    function updateDiscountUI() {
+        if (discountCode) {
+            displayDiscountCodeSpan.textContent = discountCode;
+            generatedDiscountCodeDiv.style.display = 'block';
+            applyFacebookPromoBtn.textContent = 'Discount Applied';
+            applyFacebookPromoBtn.disabled = true;
+            facebookShareLinkInput.disabled = true;
+        } else {
+            generatedDiscountCodeDiv.style.display = 'none';
+            displayDiscountCodeSpan.textContent = '';
+            applyFacebookPromoBtn.textContent = 'Apply Discount';
+            applyFacebookPromoBtn.disabled = false;
+            facebookShareLinkInput.disabled = false;
+            facebookShareLinkInput.value = '';
+        }
+    }
+
+    // --- localStorage persistence (fixed) ---
+    function saveCartToLocal(){
+      try{
+        localStorage.setItem('nawarathna_cart_v1', JSON.stringify(cart));
+        // only save the discount key when a real code exists; otherwise remove it
+        if (discountCode && discountCode !== 'null') {
+          localStorage.setItem('nawarathna_discount_code', discountCode);
+        } else {
+          localStorage.removeItem('nawarathna_discount_code');
+        }
+      }catch(e){
+        // fail silently
+      }
+    }
+
+    function loadCartFromLocal(){
+      try{
+        const raw = localStorage.getItem('nawarathna_cart_v1');
+        if(raw) cart = JSON.parse(raw);
+      } catch(e){
+        cart = {};
+      }
+
+      try{
+        const d = localStorage.getItem('nawarathna_discount_code');
+        // treat absent, empty or "null" as null
+        discountCode = (d && d !== 'null' && d !== 'undefined') ? d : null;
+      } catch(e){
+        discountCode = null;
+      }
+    }
+
+    // --- toast ---
+    let toastTimer = null;
+    function showToast(msg='Added to cart'){
+      toast.textContent = msg; toast.classList.add('show');
+      clearTimeout(toastTimer); toastTimer = setTimeout(()=>toast.classList.remove('show'), 1600);
+    }
+
+    // --- CART MODAL OPEN/CLOSE ---
+    function openCart(){
+      cartModalBackdrop.classList.add('show');
+      cartModalBackdrop.setAttribute('aria-hidden','false');
+      if(waFloat) waFloat.style.display = 'none'; // Hide floating WhatsApp button
+      facebookPromoSection.style.display = 'block'; // Ensure promo is visible initially
+      // Ensure the cart content is visible by scrolling to top if needed
+      cartItemsEl.scrollTop = 0;
+    }
+    function closeCart(){
+      cartModalBackdrop.classList.remove('show');
+      cartModalBackdrop.setAttribute('aria-hidden','true');
+      if(waFloat) waFloat.style.display = 'flex'; // Show floating WhatsApp button
+    }
+
+    // close when clicking backdrop area (outside modal)
+    cartModalBackdrop.addEventListener('click', (e)=>{
+      if(e.target === cartModalBackdrop){
+        closeCart();
+      }
+    });
+
+    // --- WhatsApp order ---
+    function sendOrderViaWhatsApp(withShare = true){
+      const name = (document.getElementById('custName').value || '').trim();
+      const phone = (document.getElementById('custPhone').value || '').trim();
+      const s = cartSummary();
+      if(s.items === 0){ alert('Your cart is empty'); return; }
+
+      let msg = `Order from ${name || 'Customer'}\n`;
+      if(phone) msg += `Contact: ${phone}\n`;
+      msg += `\nItems:\n`;
+      Object.values(cart).forEach(c => {
+        msg += `${c.qty} x ${c.product.title} (SKU ${c.product.sku}) - LKR ${formatNumber(c.product.price)} each\n`;
+      });
+      msg += `\nSubtotal: LKR ${formatNumber(s.total)}\n`;
+
+      if (withShare && discountCode) {
+          msg += `Discount (10% Facebook Share): LKR ${formatNumber(s.total - s.discountedTotal)}\n`;
+          msg += `Discount Code: ${discountCode}\n`;
+          msg += `Final Total: LKR ${formatNumber(s.discountedTotal)}\n`;
+      } else if (!withShare && discountCode) {
+          // If sending without share, but discount was applied, remove it for this specific message.
+          msg += `Final Total: LKR ${formatNumber(s.total)}\n`; // Show original total if not sharing for discount
+      }
+
+      msg += `\nPlease confirm final price & delivery. Thank you!`;
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=` + encodeURIComponent(msg);
+      window.open(url, '_blank');
+
+      // Close cart and display promo content after sending order (with or without share)
+      closeCart();
+      facebookPromoSection.style.display = 'block'; // Show promo again after sending order
+    }
+
+    // --- search ---
+    document.getElementById('searchInput').addEventListener('input', (e)=>{
+      const q = e.target.value.trim().toLowerCase();
+      if(!q) renderProducts(products);
+      else renderProducts(products.filter(p => p.title.toLowerCase().includes(q) || (p.sku && p.sku.toLowerCase().includes(q))));
+    });
+
+    // --- header buttons ---
+    document.getElementById('openCartBtn').addEventListener('click', ()=> openCart());
+    document.getElementById('closeCartBtn').addEventListener('click', ()=> closeCart());
+    // safe binding: only attach clearCart if such an element exists (prevents runtime error)
+    const clearCartBtn = document.getElementById('clearCart');
+    if (clearCartBtn) {
+      clearCartBtn.addEventListener('click', ()=>{ if(confirm('Clear cart?')){ clearCart(); } });
+    }
+    sendOrderBtn.addEventListener('click', ()=> sendOrderViaWhatsApp(true));
+    sendOrderWithoutShareBtn.addEventListener('click', ()=> sendOrderViaWhatsApp(false));
+
+    function openWhatsAppPromo(e){ e.preventDefault(); window.open('https://wa.me/' + WHATSAPP_NUMBER, '_blank'); }
+
+    // --- whatsapp floating button ---
+    waFloat.addEventListener('click', (e)=>{ e.preventDefault(); window.open('https://wa.me/' + WHATSAPP_NUMBER, '_blank'); });
+
+    // --- Facebook Promo Logic ---
+    applyFacebookPromoBtn.addEventListener('click', () => {
+        const shareLink = facebookShareLinkInput.value.trim();
+        // Basic validation for a Facebook link
+        if (shareLink && (shareLink.startsWith('https://www.facebook.com/') || shareLink.startsWith('https://m.facebook.com/'))) {
+            discountCode = generateCouponCode();
+            saveCartToLocal();
+            updateCartUI();
+            updateDiscountUI();
+            alert('Discount applied! Your 10% off code is: ' + discountCode);
+        } else {
+            alert('Please enter a valid Facebook share link.');
+        }
+    });
+
+    // --- init ---
+    loadCartFromLocal(); renderProducts(products); updateCartUI(); updateDiscountUI();
+
+    // Set the current year in the footer
+    const yrEl = document.getElementById('yr');
+    if (yrEl) yrEl.textContent = new Date().getFullYear();
+
+    // For accessibility: ESC closes cart
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeCart(); });
+
+    // Scroll listener intentionally does NOT auto-close the cart (better UX)
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      let st = window.pageYOffset || document.documentElement.scrollTop;
+      lastScrollTop = st <= 0 ? 0 : st;
+    }, false);
+  </script>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div>
+        <div style="font-weight:900">Nawarathna Cool Engineering PVT LTD</div>
+        <div style="opacity:.9;margin-top:8px">AC installation, repair & maintenance</div>
+        <div style="margin-top:10px">&copy; <span id="yr"></span> Nawarathna Cool Engineering</div>
+      </div>
+      <div>
+        <div style="font-weight:700;margin-bottom:6px">Quick Links</div>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#services">Our Services</a>
+        <a href="shop.html">Shop</a>
+        <a href="index.html#gallery">Gallery</a>
+        <a href="index.html#contact">Contact Us</a>
+      </div>
+      <div>
+        <div style="font-weight:700;margin-bottom:6px">Contact</div>
+        <div>nadun.navarathna@icloud.com</div>
+        <div style="margin-top:6px">+94 757 077 777<br>+94 762 563 694</div>
+        <div style="margin-top:8px">Development & Maintenance by Sahan Colombage - 070 315 0742</div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
